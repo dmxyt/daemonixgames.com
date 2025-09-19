@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DaemonixGames.us</title>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0a0a0f;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(6px);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #ff00ff, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Botón hamburguesa */
+    .menu-btn {
+      width: 40px;
+      height: 30px;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .menu-btn span {
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #ff00ff, #00ffff);
+      border-radius: 2px;
+      transition: all 0.4s ease;
+    }
+    .menu-btn span:nth-child(1) { top: 0; }
+    .menu-btn span:nth-child(2) { top: 13px; }
+    .menu-btn span:nth-child(3) { bottom: 0; }
+
+    .menu-btn.active span:nth-child(1) {
+      transform: rotate(45deg);
+      top: 13px;
+    }
+    .menu-btn.active span:nth-child(2) { opacity: 0; }
+    .menu-btn.active span:nth-child(3) {
+      transform: rotate(-45deg);
+      bottom: 13px;
+    }
+
+    /* Menú lateral */
+    nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      height: 100%;
+      background: #111122;
+      transition: right 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 5rem 2rem;
+      box-shadow: -5px 0 15px rgba(255, 0, 255, 0.4);
+      z-index: 900;
+    }
+    nav.active { right: 0; }
+
+    nav a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.3rem;
+      margin: 1rem 0;
+      transition: color 0.3s ease;
+    }
+    nav a svg {
+      stroke: url(#gradient);
+      width: 26px;
+      height: 26px;
+    }
+    nav a:hover { color: #00ffff; }
+
+    main {
+      padding-top: 6rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #ff00ff, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+
+    /* Cards */
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .card {
+      background: #151525;
+      border-radius: 15px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      position: relative;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 15px;
+      padding: 2px;
+      background: linear-gradient(135deg, #ff00ff, #00ffff);
+      -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+              mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 0 25px rgba(255, 0, 255, 0.4),
+                  0 0 35px rgba(0, 255, 255, 0.4);
+    }
+
+    .card i {
+      width: 50px;
+      height: 50px;
+      stroke: url(#gradient);
+      margin-bottom: 1rem;
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    /* Animación centrada */
+    .intro {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0a0a0f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      animation: fadeOut 2s ease 3s forwards;
+    }
+
+    .intro img {
+      width: 250px;
+      max-width: 80%;
+      animation: zoomIn 2s ease, glow 2s infinite alternate;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 10px #ff00ff); }
+      to { filter: drop-shadow(0 0 25px #00ffff); }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Gradiente global para íconos -->
+  <svg width="0" height="0">
+    <defs>
+      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop stop-color="#ff00ff" offset="0%"/>
+        <stop stop-color="#00ffff" offset="100%"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- Animación centrada -->
+  <div class="intro">
+    <img src="https://cdn.jsdelivr.net/gh/dmxyt/dmx@37aaaefa029d3fbc0e4b5b66e6d6b69d4d7ce350/file_00000000a27c61f9b15a2f2243d99a87.png" alt="Daemonix Intro">
+  </div>
+
+  <header>
+    <div class="logo">DaemonixGames.us</div>
+    <div class="menu-btn" id="menu-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <nav id="side-menu">
+    <a href="#"><i data-lucide="home"></i> Inicio</a>
+    <a href="#"><i data-lucide="gamepad-2"></i> Juegos</a>
+    <a href="#"><i data-lucide="book-text"></i> Blog</a>
+    <a href="#"><i data-lucide="shopping-bag"></i> Tienda</a>
+    <a href="/contacto.html"><i data-lucide="messages-square"></i> Contacto</a>
+  </nav>
+
+  <main>
+    <h1>Bienvenido a DaemonixGames.us</h1>
+    <p>Tu universo gamer en fucsia y cyan.</p>
+
+    <div class="cards-container">
+      <div class="card">
+        <i data-lucide="gamepad-2"></i>
+        <h2>Juegos Épicos</h2>
+        <p>Explora nuestra colección de juegos con lo mejor del mundo gamer.</p>
+      </div>
+      <div class="card">
+        <i data-lucide="shopping-cart"></i>
+        <h2>Tienda Gamer</h2>
+        <p>Compra Licencias, cuentas y contenido exclusivo para gamers. (Coming Soon)</p>
+      </div>
+      <div class="card">
+        <i data-lucide="trophy"></i>
+        <h2>Competencias</h2>
+        <p>Participa en torneos y demuestra que eres un verdadero pro. (Coming Soon)</p>
+      </div>
+      <div class="card">
+        <i data-lucide="users"></i>
+        <h2>Comunidad</h2>
+        <p>Únete a la familia DaemonixGames y comparte con otros jugadores.</p>
+      </div>
+    </div>
+  </main>
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <h2>DaemonixGames.us</h2>
+    <p>El universo gamer a tu alcance ⚡</p>
+    <ul class="footer-links">
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#">Catálogo</a></li>
+      <li><a href="#">Noticias</a></li>
+      <li><a href="/contacto.html">Contacto</a></li>
+    </ul>
+    <p class="copy">© 2025 DaemonixGames.us — Todos los derechos reservados</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: linear-gradient(90deg, rgba(255,0,255,0.08), rgba(0,255,255,0.08));
+    border-top: 2px solid transparent;
+    border-image: linear-gradient(90deg, #ff00ff, #00ffff) 1;
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .footer h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #ff00ff, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glowFooter 2s infinite alternate;
+  }
+
+  @keyframes glowFooter {
+    from { text-shadow: 0 0 10px #ff00ff; }
+    to { text-shadow: 0 0 25px #00ffff; }
+  }
+
+  .footer p {
+    margin: 5px 0;
+    color: #ccc;
+    font-size: 0.9rem;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .footer-links li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    text-shadow: 0 0 8px #ff00ff, 0 0 15px #00ffff;
+    transition: 0.3s;
+  }
+
+  .footer-links li a:hover {
+    color: #00ffff;
+    text-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffff;
+  }
+
+  .copy {
+    margin-top: 15px;
+    font-size: 0.8rem;
+    color: #777;
+  }
+</style>
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const sideMenu = document.getElementById('side-menu');
+
+    menuBtn.addEventListener('click', () => {
+      menuBtn.classList.toggle('active');
+      sideMenu.classList.toggle('active');
+    });
+
+    // Activar íconos Lucide
+    lucide.createIcons();
+  </script>
+</body>
+</html>
