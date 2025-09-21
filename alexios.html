@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuenta de Alexios</title>
+  <style>
+    /* ===== Reset básico ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at center, #0a0a0a, #000000);
+      color: #f1f1f1;
+      overflow-x: hidden;
+    }
+
+    /* ===== Fondo animado estilo Daemonix ===== */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(circle, rgba(255,0,200,0.2) 10%, transparent 70%),
+        radial-gradient(circle, rgba(0,255,255,0.15) 15%, transparent 80%);
+      animation: moveBg 20s linear infinite;
+      z-index: -1;
+    }
+    @keyframes moveBg {
+      0% { transform: translate(0,0); }
+      50% { transform: translate(-25%, -25%); }
+      100% { transform: translate(0,0); }
+    }
+
+    /* ===== Header ===== */
+    header {
+      text-align: center;
+      padding: 25px;
+      background: #0d0d0d;
+      border-bottom: 2px solid #ff00ff;
+      box-shadow: 0 0 20px #ff00ff88;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: #ff00ff;
+      text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+      letter-spacing: 2px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff; }
+      to { text-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff; }
+    }
+
+    /* ===== Main ===== */
+    main {
+      padding: 20px;
+      max-width: 950px;
+      margin: auto;
+    }
+
+    h2 {
+      margin: 30px 0 15px 0;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff, 0 0 15px #ff00ff;
+      border-bottom: 2px solid #00ffff;
+      padding-bottom: 5px;
+      font-size: 1.8rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      background: rgba(20,20,20,0.9);
+      margin: 8px 0;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-size: 1rem;
+      color: #fff;
+      border: 1px solid #ff00ff44;
+      box-shadow: 0 0 8px #ff00ff44;
+      transition: all 0.25s ease;
+    }
+    ul li:hover {
+      background: #111;
+      border-color: #00ffffaa;
+      box-shadow: 0 0 15px #00ffff, 0 0 25px #ff00ff;
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-top: 30px;
+      border-top: 1px solid #222;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Cuenta personal de Alexios</h1>
+  </header>
+
+  <main>
+    <h2>Listado de Juegos</h2>
+    <ul>
+      <li>Gears of War 1, 2, 3</li>
+      <li>Resident Evil Code: Verónica</li>
+      <li>Outland</li>
+      <li>Metal Gear Solid V: The Phantom Pain</li>
+      <li>XCOM Enemy Unknown</li>
+      <li>Tron Evolution</li>
+      <li>Rainbow Six Vegas 2</li>
+      <li>Brothers: A Tale of Two Sons</li>
+      <li>Goat Simulator</li>
+      <li>Lost Planet</li>
+      <li>Halo Reach</li>
+      <li>Halo 3</li>
+      <li>Sleeping Dogs</li>
+      <li>Minecraft</li>
+      <li>Monkey Island</li>
+      <li>Plantas vs Zombies</li>
+      <li>Dirt Showdown</li>
+      <li>Forza Horizon 1</li>
+      <li>Dirt 3</li>
+      <li>Dragon Age Origins</li>
+      <li>NeoGeo BC</li>
+      <li>Beyond Good & Evil</li>
+      <li>BattleBlock Theater</li>
+      <li>Far Cry Blood Dragon</li>
+      <li>Portal 1, 2</li>
+      <li>Conker: Live and Reloaded</li>
+      <li>Midway Arcade Origins</li>
+      <li>The Walking Dead (con DLCs)</li>
+      <li>The Walking Dead 2</li>
+      <li>Cars 2</li>
+      <li>Metro Last Light</li>
+      <li>Assassin's Creed Revelations</li>
+      <li>Assassin's Creed 1, 2, 3</li>
+      <li>Super Street Fighter 4</li>
+      <li>SSX</li>
+      <li>Bayonetta</li>
+      <li>MX vs ATV Alive</li>
+      <li>MX vs ATV Reflex</li>
+      <li>Mafia 2</li>
+      <li>Batman Arkham City</li>
+      <li>Batman Arkham Asylum</li>
+      <li>Skyrim</li>
+      <li>Saints Row 2, 3, 4</li>
+      <li>Mirror's Edge</li>
+      <li>Grid 2</li>
+      <li>Crysis 3</li>
+      <li>Dishonored</li>
+      <li>Metro 2033</li>
+      <li>Metro Last Light</li>
+      <li>Lego Batman 2</li>
+      <li>Battlefield: Bad Company 2</li>
+    </ul>
+  </main>
+
+  <footer>
+    © 2025 - DaemonixGames.com
+  </footer>
+</body>
+</html>
