@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juegos con Bloqueo Regional - DaemonixGames.com</title>
+  <meta name="description" content="Esta es la lista de juegos con bloqueo regional en Xbox 360.">
+  <link rel="icon" href="/assets/images/20230213_232838.png">
+  <style>
+    :root {
+      --bg-color: #0d0d0d;
+      --text-color: #f2f2f2;
+      --accent-color: #ff00ff;
+      --card-hover: rgba(255, 0, 255, 0.1);
+    }
+    body.light {
+      --bg-color: #f9f9f9;
+      --text-color: #222;
+      --accent-color: #c200c2;
+      --card-hover: rgba(194, 0, 194, 0.1);
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      transition: all 0.3s ease;
+    }
+    header {
+      background: url('/assets/images/20230213_232838.png') center/cover no-repeat;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-shadow: 2px 2px 6px #000;
+    }
+    header h1 {
+      font-size: 2.5em;
+      margin: 0;
+    }
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h2 {
+      color: var(--accent-color);
+      border-bottom: 2px solid var(--accent-color);
+      padding-bottom: 5px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      padding: 8px;
+      border-bottom: 1px solid #333;
+    }
+    ul li:hover {
+      background: var(--card-hover);
+      transition: 0.3s;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    footer a img {
+      margin-top: 10px;
+    }
+    .theme-toggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: var(--accent-color);
+      border: none;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .theme-toggle:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" onclick="toggleTheme()">🌙 Modo</button>
+  <header>
+    <h1>Juegos con Bloqueo Regional</h1>
+  </header>
+  <main>
+    <h2>Lista de Juegos (Xbox 360 - PAL / NTSC Bloqueados)</h2>
+    <ul>
+      <li>Medal of Honor Airbone</li>
+      <li>Gears of War 1</li>
+      <li>Gears of War 3</li>
+      <li>Dirt Showdown</li>
+      <li>Dante’s Inferno</li>
+      <li>Call of Duty - Modern Warfare 1 & 2</li>
+      <li>Black Ops 1 & 2</li>
+      <li>Tekken 6 y TTT 2</li>
+      <li>Halo 3 y Reach</li>
+      <li>Battlefield Bad Company 2</li>
+      <li>Red Dead Redemption</li>
+      <li>GTA IV</li>
+      <li>Army of Two</li>
+      <li>Resident Evil: Operation Raccoon City</li>
+      <li>Far Cry 4</li>
+      <li>Earth Defense Force 2017</li>
+      <li>Ninja Gaiden 3</li>
+      <li>Kane & Lynch 2</li>
+      <li>Fable II</li>
+      <li>Skate 3</li>
+      <li>Prototype 1</li>
+      <li>Saints Row 2</li>
+      <li>Army of Two: The Devil’s Cartel</li>
+      <li>Rainbow Six Vegas 1 & 2</li>
+      <li>Devil May Cry 4</li>
+      <li>Saw 2</li>
+      <li>Just Cause 2</li>
+      <li>Call of Duty Black Ops 2</li>
+      <li>Far Cry 2</li>
+      <li>Resident Evil 6</li>
+      <li>Battlestations Pacific</li>
+      <li>Mafia II</li>
+      <li>Mirror’s Edge</li>
+      <li>Call of Duty: World at War</li>
+      <li>Assassin’s Creed 1 & 3</li>
+      <li>Silent Hill HD Collection</li>
+      <li>Lost Planet 2</li>
+      <li>GRID 2</li>
+      <li>Lost Planet Colonies</li>
+      <li>The Darkness 1 & 2</li>
+      <li>Operation Flashpoint: Dragon Rising</li>
+      <li>Brothers in Arms</li>
+    </ul>
+  </main>
+  <footer>
+    <a href="https://youtube.com/@Daemonixgames" target="_blank">
+      <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=D200FF&center=true&width=435&lines=Grupo+Daemonix;DMX+Clan;Gamers;Xbox;Free+Games;Profesional;Daemonix+Games;Daemonix+%C2%A9+Alexios" alt="Daemonix Letters">
+    </a>
+  </footer>
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+      const btn = document.querySelector('.theme-toggle');
+      if (document.body.classList.contains('light')) {
+        btn.textContent = "☀️ Modo";
+      } else {
+        btn.textContent = "🌙 Modo";
+      }
+    }
+  </script>
+</body>
+</html>
