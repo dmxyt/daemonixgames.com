@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>brosknd</title>
+  <style>
+    /* ===== Reset básico ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at center, #0a0a0a, #000000);
+      color: #f1f1f1;
+      overflow-x: hidden;
+    }
+
+    /* ===== Fondo animado estilo Daemonix ===== */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(circle, rgba(255,0,200,0.2) 10%, transparent 70%),
+        radial-gradient(circle, rgba(0,255,255,0.15) 15%, transparent 80%);
+      animation: moveBg 20s linear infinite;
+      z-index: -1;
+    }
+    @keyframes moveBg {
+      0% { transform: translate(0,0); }
+      50% { transform: translate(-25%, -25%); }
+      100% { transform: translate(0,0); }
+    }
+
+    /* ===== Header ===== */
+    header {
+      text-align: center;
+      padding: 25px;
+      background: #0d0d0d;
+      border-bottom: 2px solid #ff00ff;
+      box-shadow: 0 0 20px #ff00ff88;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: #ff00ff;
+      text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+      letter-spacing: 2px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff; }
+      to { text-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff; }
+    }
+
+    /* ===== Main ===== */
+    main {
+      padding: 20px;
+      max-width: 950px;
+      margin: auto;
+    }
+
+    h2 {
+      margin: 30px 0 15px 0;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff, 0 0 15px #ff00ff;
+      border-bottom: 2px solid #00ffff;
+      padding-bottom: 5px;
+      font-size: 1.8rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      background: rgba(20,20,20,0.9);
+      margin: 8px 0;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-size: 1rem;
+      color: #fff;
+      border: 1px solid #ff00ff44;
+      box-shadow: 0 0 8px #ff00ff44;
+      transition: all 0.25s ease;
+    }
+    ul li:hover {
+      background: #111;
+      border-color: #00ffffaa;
+      box-shadow: 0 0 15px #00ffff, 0 0 25px #ff00ff;
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-top: 30px;
+      border-top: 1px solid #222;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Gamertag: brosknd</h1>
+  </header>
+
+  <main>
+    <h2>Listado de Juegos</h2>
+    <ul>
+         <li>AirMech Arena</li>
+      <li>Army of Two</li>
+      <li>Assassin's Creed 2</li>
+      <li>Assassin's Creed IV: Black Flag</li>
+      <li>BattleBlock Theater</li>
+      <li>Battlefield: Bad Company 2</li>
+      <li>BioShock Infinite</li>
+      <li>Brothers: A Tale of Two Sons</li>
+      <li>Charlie Murder</li>
+      <li>Civilization Revolution</li>
+      <li>Crackdown</li>
+      <li>Dark Souls</li>
+      <li>Darksiders 2</li>
+      <li>Dead Island</li>
+      <li>Dead Rising 2</li>
+      <li>DR2: Case Zero</li>
+      <li>Fable 3</li>
+      <li>Gears of War</li>
+      <li>Gears of War: Judgment</li>
+      <li>Gotham City Impostors</li>
+      <li>Halo 3</li>
+      <li>Halo: Reach</li>
+      <li>Halo Waypoint</li>
+      <li>Iron Brigade</li>
+      <li>Lara Croft: Guardian of Light</li>
+      <li>Mars Rover Landing</li>
+      <li>Marvel vs. Capcom</li>
+      <li>Motocross Madness</li>
+      <li>MX vs. ATV Alive</li>
+      <li>Saints Row: The Third</li>
+      <li>Sleeping Dogs</li>
+      <li>Sniper Elite V2</li>
+      <li>Soulcalibur V</li>
+      <li>Spartacus Legends</li>
+      <li>SSX</li>
+      <li>Super Street Fighter IV</li>
+      <li>Terraria</li>
+      <li>The Witcher 2: Assassins of Kings</li>
+      <li>Tomb Raider</li>
+      <li>Tom Clancy's Rainbow Six: Vegas</li>
+      <li>Skyrim</li>
+    </ul>
+  </main>
+
+  <footer>
+    © 2025 - DaemonixGames.com
+  </footer>
+</body>
+</html>
