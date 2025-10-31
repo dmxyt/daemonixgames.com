@@ -1,368 +1,400 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DaemonixGames.com</title>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#ff0000" />
+<meta name="description" content="DaemonixGames Store: Tienda especializada en juegos Xbox. con ofertas únicas y exclusivas." />
+<title>DaemonixGames | Xbox Store</title>
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #0a0a0f;
-      color: #fff;
-      overflow-x: hidden;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: rgba(10, 10, 15, 0.8);
-      backdrop-filter: blur(6px);
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-    }
-
-    .logo {
-      font-size: 1.6rem;
-      font-weight: bold;
-      background: linear-gradient(90deg, #ff00ff, #00ffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    /* Botón hamburguesa */
-    .menu-btn {
-      width: 40px;
-      height: 30px;
-      position: relative;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .menu-btn span {
-      position: absolute;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, #ff00ff, #00ffff);
-      border-radius: 2px;
-      transition: all 0.4s ease;
-    }
-    .menu-btn span:nth-child(1) { top: 0; }
-    .menu-btn span:nth-child(2) { top: 13px; }
-    .menu-btn span:nth-child(3) { bottom: 0; }
-
-    .menu-btn.active span:nth-child(1) {
-      transform: rotate(45deg);
-      top: 13px;
-    }
-    .menu-btn.active span:nth-child(2) { opacity: 0; }
-    .menu-btn.active span:nth-child(3) {
-      transform: rotate(-45deg);
-      bottom: 13px;
-    }
-
-    /* Menú lateral */
-    nav {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 70%;
-      height: 100%;
-      background: #111122;
-      transition: right 0.5s ease;
-      display: flex;
-      flex-direction: column;
-      padding: 5rem 2rem;
-      box-shadow: -5px 0 15px rgba(255, 0, 255, 0.4);
-      z-index: 900;
-    }
-    nav.active { right: 0; }
-
-    nav a {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #fff;
-      text-decoration: none;
-      font-size: 1.3rem;
-      margin: 1rem 0;
-      transition: color 0.3s ease;
-    }
-    nav a svg {
-      stroke: url(#gradient);
-      width: 26px;
-      height: 26px;
-    }
-    nav a:hover { color: #00ffff; }
-
-    main {
-      padding-top: 6rem;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      background: linear-gradient(90deg, #ff00ff, #00ffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    p {
-      margin-top: 1rem;
-      font-size: 1.2rem;
-      color: #ccc;
-    }
-
-    /* Cards */
-    .cards-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      padding: 3rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .card {
-      background: #151525;
-      border-radius: 15px;
-      padding: 1.5rem;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 2px solid transparent;
-      background-clip: padding-box;
-      position: relative;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 15px;
-      padding: 2px;
-      background: linear-gradient(135deg, #ff00ff, #00ffff);
-      -webkit-mask: 
-        linear-gradient(#fff 0 0) content-box, 
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: destination-out;
-              mask-composite: exclude;
-      pointer-events: none;
-    }
-
-    .card:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 0 25px rgba(255, 0, 255, 0.4),
-                  0 0 35px rgba(0, 255, 255, 0.4);
-    }
-
-    .card i {
-      width: 50px;
-      height: 50px;
-      stroke: url(#gradient);
-      margin-bottom: 1rem;
-    }
-
-    .card h2 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: #fff;
-    }
-
-    .card p {
-      font-size: 1rem;
-      color: #ccc;
-    }
-
-    /* Animación centrada */
-    .intro {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #0a0a0f;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-      animation: fadeOut 2s ease 3s forwards;
-    }
-
-    .intro img {
-      width: 250px;
-      max-width: 80%;
-      animation: zoomIn 2s ease, glow 2s infinite alternate;
-    }
-
-    @keyframes zoomIn {
-      from { transform: scale(0.7); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    @keyframes glow {
-      from { filter: drop-shadow(0 0 10px #ff00ff); }
-      to { filter: drop-shadow(0 0 25px #00ffff); }
-    }
-
-    @keyframes fadeOut {
-      to { opacity: 0; visibility: hidden; }
-    }
-  </style>
-</head>
-<body>
-  <!-- Gradiente global para íconos -->
-  <svg width="0" height="0">
-    <defs>
-      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop stop-color="#ff00ff" offset="0%"/>
-        <stop stop-color="#00ffff" offset="100%"/>
-      </linearGradient>
-    </defs>
-  </svg>
-
-  <!-- Animación centrada -->
-  <div class="intro">
-    <img src="https://cdn.jsdelivr.net/gh/dmxyt/dmx@37aaaefa029d3fbc0e4b5b66e6d6b69d4d7ce350/file_00000000a27c61f9b15a2f2243d99a87.png" alt="Daemonix Intro">
-  </div>
-
-  <header>
-    <div class="logo">DaemonixGames.com</div>
-    <div class="menu-btn" id="menu-btn">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </header>
-
-  <nav id="side-menu">
-    <a href="#"><i data-lucide="home"></i> Inicio</a>
-    <a href="#"><i data-lucide="gamepad-2"></i> Juegos</a>
-    <a href="#"><i data-lucide="book-text"></i> Blog</a>
-    <a href="#"><i data-lucide="shopping-bag"></i> Tienda</a>
-    <a href="contacto.html"><i data-lucide="messages-square"></i> Contacto</a>
-  </nav>
-
-  <main>
-    <h1>Bienvenido a DaemonixGames.com</h1>
-    <p>Tu universo gamer en fucsia y cyan.</p>
-
-    <div class="cards-container">
-      <div class="card">
-        <i data-lucide="gamepad-2"></i>
-        <h2>Juegos Épicos</h2>
-        <p>Explora nuestra colección de juegos con lo mejor del mundo gamer.</p>
-      </div>
-      <div class="card">
-        <i data-lucide="shopping-cart"></i>
-        <h2>Tienda Gamer</h2>
-        <p>Compra Licencias, cuentas y contenido exclusivo para gamers. (Coming Soon)</p>
-      </div>
-      <div class="card">
-        <i data-lucide="trophy"></i>
-        <h2>Competencias</h2>
-        <p>Participa en torneos y demuestra que eres un verdadero pro. (Coming Soon)</p>
-      </div>
-      <div class="card">
-        <i data-lucide="users"></i>
-        <h2>Comunidad</h2>
-        <p>Únete a la familia DaemonixGames y comparte con otros jugadores.</p>
-      </div>
-    </div>
-  </main>
-<!-- Footer -->
-<footer class="footer">
-  <div class="footer-content">
-    <h2>DaemonixGames.com</h2>
-    <p>El universo gamer a tu alcance ⚡</p>
-    <ul class="footer-links">
-      <li><a href="#">Inicio</a></li>
-      <li><a href="#">Catálogo</a></li>
-      <li><a href="#">Noticias</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
-    </ul>
-    <p class="copy">© 2025 DaemonixGames.com — Todos los derechos reservados</p>
-  </div>
-</footer>
+<!-- Fuente -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-  .footer {
-    background: linear-gradient(90deg, rgba(255,0,255,0.08), rgba(0,255,255,0.08));
-    border-top: 2px solid transparent;
-    border-image: linear-gradient(90deg, #ff00ff, #00ffff) 1;
-    padding: 30px 20px;
-    text-align: center;
-    position: relative;
-    z-index: 2;
+  :root{
+    --red-1:#ff0033;
+    --red-2:#b20000;
+    --bg:#060405;
+    --card-radius:18px;
+    --glass: rgba(255,255,255,0.03);
+    --accent: linear-gradient(90deg,var(--red-1),var(--red-2));
+    --text:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Orbitron',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
   }
 
-  .footer h2 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    background: linear-gradient(90deg, #ff00ff, #00ffff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: glowFooter 2s infinite alternate;
+  /* CANVAS PARTICULAS (fondo) */
+  #bg-canvas{
+    position:fixed; inset:0; width:100%; height:100%; z-index:0;
+    display:block;
   }
 
-  @keyframes glowFooter {
-    from { text-shadow: 0 0 10px #ff00ff; }
-    to { text-shadow: 0 0 25px #00ffff; }
+  /* LOADER FULLSCREEN */
+  #loader{
+    position:fixed; inset:0; display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.95));
+    z-index:3000; flex-direction:column; gap:18px;
+  }
+  .loader-ring{
+    width:110px;height:110px;border-radius:50%;
+    background:conic-gradient(var(--red-1), transparent 40%, rgba(255,0,0,0.05));
+    filter:blur(6px);
+    position:relative;
+    animation:spin 1.8s linear infinite;
+    box-shadow:0 0 30px rgba(255,0,0,0.18), 0 0 60px rgba(178,0,0,0.09);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .loader-core{
+    width:46px;height:46px;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, #fff8 0%, rgba(255,255,255,0.03) 6%, transparent 30%),linear-gradient(180deg,#1b0000,#3a0000);
+    box-shadow:0 0 12px rgba(255,0,0,0.35);
+    transform:scale(0.95);
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .loader-text{
+    font-size:1rem;color:var(--red-1);letter-spacing:1px;
+    text-align:center; max-width:90%;
+    text-shadow: 0 0 12px rgba(255,0,0,0.18);
   }
 
-  .footer p {
-    margin: 5px 0;
-    color: #ccc;
-    font-size: 0.9rem;
+  /* APP LAYOUT */
+  header{
+    position:relative; z-index:2000;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:10px;padding:14px 22px;
+    background: linear-gradient(90deg, rgba(0,0,0,0.45), rgba(0,0,0,0.2));
+    border-bottom:1px solid rgba(255,0,0,0.06);
+    backdrop-filter: blur(6px);
+  }
+  .logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.25rem}
+  .logo img{width:46px;height:46px;border-radius:8px;object-fit:cover;filter:drop-shadow(0 0 8px rgba(255,0,0,0.25))}
+  
+  nav {display:flex;align-items:center;gap:12px}
+  .menu-toggle{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 10px;border-radius:12px;cursor:pointer;color:var(--text)}
+  .menu-toggle:hover{box-shadow:0 0 18px rgba(255,0,0,0.12)}
+
+  /* HAMBURGUESA */
+  #hamburger{display:none}
+
+  /* MAIN */
+  main{position:relative;z-index:1000;padding:22px;min-height:calc(100vh - 150px)}
+
+  .hero{
+    display:flex;align-items:center;gap:18px;margin-bottom:18px;
+    background:linear-gradient(90deg, rgba(255,0,0,0.03), rgba(178,0,0,0.02));
+    padding:16px;border-radius:14px;border:1px solid rgba(255,0,0,0.04);
+  }
+  .hero .title{font-size:1.35rem;font-weight:700}
+  .hero .subtitle{font-size:0.88rem;color:rgba(255,255,255,0.75)}
+
+  /* CONTROLES */
+  .controls{display:flex;gap:12px;align-items:center;margin:12px 0 22px;flex-wrap:wrap}
+  .search{
+    flex:1;max-width:420px;
+    background:var(--glass);border:1px solid rgba(255,0,0,0.06);padding:10px 12px;border-radius:12px;color:#fff;
+    display:flex;align-items:center;gap:8px;
+  }
+  .search input{flex:1;background:transparent;border:0;color:var(--text);outline:none;font-size:0.95rem}
+  .btn{background:var(--accent);padding:9px 12px;border-radius:10px;border:0;color:#fff;cursor:pointer;font-weight:700}
+  .small-btn{padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:#fff;cursor:pointer}
+
+  /* GRID CATALOGO */
+  .cards{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:18px;
+  }
+  .card{
+    background:linear-gradient(180deg, rgba(255,0,0,0.025), rgba(0,0,0,0.12));
+    border-radius:14px; padding:10px;position:relative;overflow:hidden;border:1px solid rgba(255,0,0,0.04);
+    transition:transform .22s ease, box-shadow .22s ease;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(255,0,0,0.06)}
+  .card img{width:100%;height:160px;object-fit:cover;border-radius:10px;display:block;margin-bottom:10px}
+  .card h4{font-size:0.95rem;margin-bottom:6px}
+  .card .meta{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .price{background:rgba(0,0,0,0.6);padding:6px 8px;border-radius:10px;font-weight:700;border:1px solid rgba(255,0,0,0.05)}
+  .buy{background:linear-gradient(90deg,var(--red-1),var(--red-2));padding:8px 10px;border-radius:10px;border:0;color:#fff;cursor:pointer;font-weight:800}
+
+  /* ASIDE / SIDEBAR */
+  #sidebar{
+    position:fixed;right:18px;bottom:18px;z-index:1500;display:flex;flex-direction:column;gap:10px;
+  }
+  .whatsapp{width:60px;height:60px;background:#25D366;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;text-decoration:none;color:#fff;box-shadow:0 8px 30px rgba(0,0,0,0.4)}
+  .floating{background:var(--accent);padding:10px 12px;border-radius:12px;color:#000;font-weight:800;box-shadow:0 8px 30px rgba(178,0,0,0.08);text-decoration:none}
+
+  /* MODAL */
+  #modal{
+    position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.7);z-index:4000;padding:20px;
+  }
+  .modal-card{
+    width:100%;max-width:520px;background:#0b0b0b;border-radius:14px;padding:18px;border:1px solid rgba(255,0,0,0.08);
+    box-shadow:0 20px 60px rgba(0,0,0,0.6);
+  }
+  .modal-card img{width:180px;height:160px;object-fit:cover;border-radius:10px}
+  .modal-grid{display:grid;grid-template-columns:180px 1fr;gap:14px;align-items:center}
+
+  /* FOOTER */
+  footer{padding:18px;border-top:1px solid rgba(255,0,0,0.04);text-align:center;color:rgba(255,255,255,0.6);margin-top:30px}
+
+  /* RESPONSIVE */
+  @media(max-width:760px){
+    .modal-grid{grid-template-columns:1fr; text-align:center}
+    .card img{height:140px}
+    .hero{flex-direction:column;align-items:flex-start}
+
+    nav { display: none; flex-direction: column; gap: 12px; background:rgba(0,0,0,0.85); position:absolute; top:60px; right:22px; padding:12px; border-radius:12px; border:1px solid rgba(255,0,0,0.1);}
+    nav.show { display: flex; }
+    #hamburger { display: flex; background:var(--red-1); border:none; color:#fff; font-size:1.5rem; padding:6px 12px; border-radius:8px; cursor:pointer; }
+  }
+  @media(min-width:761px){
+    #hamburger { display: none; }
   }
 
-  .footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 15px 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .footer-links li a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1rem;
-    text-shadow: 0 0 8px #ff00ff, 0 0 15px #00ffff;
-    transition: 0.3s;
-  }
-
-  .footer-links li a:hover {
-    color: #00ffff;
-    text-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffff;
-  }
-
-  .copy {
-    margin-top: 15px;
-    font-size: 0.8rem;
-    color: #777;
-  }
+  /* tiny helpers */
+  .muted{color:rgba(255,255,255,0.6);font-size:0.86rem}
 </style>
-  <script>
-    const menuBtn = document.getElementById('menu-btn');
-    const sideMenu = document.getElementById('side-menu');
+</head>
+<body>
 
-    menuBtn.addEventListener('click', () => {
-      menuBtn.classList.toggle('active');
-      sideMenu.classList.toggle('active');
-    });
+<!-- CANVAS BACKGROUND -->
+<canvas id="bg-canvas"></canvas>
 
-    // Activar íconos Lucide
-    lucide.createIcons();
-  </script>
+<!-- LOADER -->
+<div id="loader" aria-hidden="false">
+  <div class="loader-ring" role="img" aria-label="Cargando Daemonix">
+    <div class="loader-core"></div>
+  </div>
+  <div class="loader-text">Invocando el poder del <strong>Xbox Daemonix</strong>...</div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <img src="https://cdn.jsdelivr.net/gh/dmxyt/daemonixgames.com@6db24bd9f4989e40d015340725b72741bea52f74/file_000000008c38624691dbbe29610d2d93.png" aglt="Daemonix logo">
+    Daemonix <span style="color:var(--red-1);margin-left:6px;font-weight:900">Xbox Store</span>
+  </div>
+
+  <button class="menu-toggle" id="hamburger" aria-label="Abrir menú">☰</button>
+
+  <nav>
+    <button class="menu-toggle" id="btn-offers">Ofertas</button>
+    <button class="menu-toggle" id="btn-packs">Packs</button>
+    <button class="menu-toggle" id="btn-methods">Métodos</button>
+    <button class="menu-toggle" id="btn-contact">Contacto</button>
+  </nav>
+</header>
+
+<!-- MAIN -->
+<main>
+  <section class="hero" aria-hidden="false">
+    <div>
+      <div class="title">Catálogo Xbox - Daemonix</div>
+      <div class="subtitle muted">Solo Xbox — precios en Guatemala (Q) y México (MXN). Interactúa con las cards para comprar o compartir.</div>
+    </div>
+    <div style="margin-left:auto;display:flex;gap:10px;align-items:center">
+      <div class="muted">Filtro: <strong style="color:var(--red-1)">XBOX</strong></div>
+    </div>
+  </section>
+
+  <div class="controls">
+    <div class="search" title="Buscar juego">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="opacity:.9"><path d="M21 21l-4.35-4.35" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="11" r="6" stroke="white" stroke-width="2"/></svg>
+      <input id="search" placeholder="🔍 Buscar juego..." aria-label="Buscar juegos" />
+    </div>
+
+    <button class="btn" id="btn-all">Todos</button>
+    <button class="small-btn" id="btn-xbox">Xbox</button>
+    <button class="small-btn" id="btn-price">Ordenar: Precio</button>
+  </div>
+
+  <section>
+    <div class="cards" id="cards"></div>
+  </section>
+</main>
+
+<!-- SIDEBAR / FLOATING ACTIONS -->
+<div id="sidebar" aria-hidden="false">
+  <a class="whatsapp" id="whatsapp" href="https://wa.me/50245168190" target="_blank" title="WhatsApp">💬</a>
+  <a class="floating" id="btn-support" href="#" title="Soporte">Soporte</a>
+</div>
+
+<!-- MODAL -->
+<div id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal-card" role="document">
+    <div style="display:flex;justify-content:space-between;align-items:start">
+      <div style="font-weight:900;color:var(--red-1)">Confirmar compra</div>
+      <button id="modal-close" class="small-btn" aria-label="Cerrar">Cerrar</button>
+    </div>
+    <div style="height:10px"></div>
+    <div class="modal-grid">
+      <img id="modal-img" src="" alt="Imagen del juego">
+      <div>
+        <h3 id="modal-title" style="margin:0 0 8px 0"></h3>
+        <div id="modal-desc" class="muted" style="margin-bottom:12px"></div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <div class="price" id="modal-price">25.Q | 60 MXN</div>
+          <button class="buy" id="modal-buy">Comprar por WhatsApp</button>
+          <button class="small-btn" id="modal-share">🔗 Copiar enlace</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © Daemonix™ • Todos los derechos reservados •AlienGames Store 
+</footer>
+
+<script>
+/* ---------------------------
+   Datos (solo XBOX)
+   --------------------------- */
+const juegos = [
+  { id: 'j1', nombre: "Blood and Dust pack", precioQ:100, precioMX:200, imagen:"https://cdn.jsdelivr.net/gh/dmxyt/gamestore@e666c077e57718ab71c52630c0d24dbf044b528e/20251027_204919.png", desc:"Acción y supervivencia - Xbox" },
+  { id: 'j2', nombre: "Próximamente", precioQ:0, precioMX:0, imagen:"https://cdn.jsdelivr.net/gh/dmxyt/dmx@37aaaefa029d3fbc0e4b5b66e6d6b69d4d7ce350/file_0000000060306230a08fa0c21ed58fa4.png", desc:"Expansión Dead Island - Xbox" },
+  { id: 'j3', nombre: "Próximamente", precioQ:0, precioMX:0, imagen:"https://cdn.jsdelivr.net/gh/dmxyt/dmx@37aaaefa029d3fbc0e4b5b66e6d6b69d4d7ce350/file_0000000060306230a08fa0c21ed58fa4.png", desc:"Lucha extrema - Xbox" },
+  { id: 'j4', nombre: "Próximamente", precioQ:0, precioMX:0, imagen:"https://cdn.jsdelivr.net/gh/dmxyt/dmx@37aaaefa029d3fbc0e4b5b66e6d6b69d4d7ce350/file_0000000060306230a08fa0c21ed58fa4.png", desc:"Superhéroes en combate - Xbox" },
+  { id: 'j5', nombre: "Próximamente", precioQ:0, precioMX:0, imagen:"https://cdn.jsdelivr.net/gh/dmxyt/dmx@37aaaefa029d3fbc0e4b5b66e6d6b69d4d7ce350/file_0000000060306230a08fa0c21ed58fa4.png", desc:"Sigilo e intriga - Xbox" }
+];
+
+/* ---------------------------
+   RENDER CARDS
+   --------------------------- */
+const cardsEl = document.getElementById('cards');
+
+function createCard(game){
+  const el = document.createElement('div');
+  el.className = 'card';
+  el.dataset.id = game.id;
+  el.innerHTML = `
+    <img src="${game.imagen}" alt="${escapeHtml(game.nombre)}">
+    <h4>${escapeHtml(game.nombre)} <span style="font-size:.8rem;color:rgba(255,255,255,0.6)"> (XBOX)</span></h4>
+    <div class="meta">
+      <div class="price">Q${game.precioQ} • ${game.precioMX} MXN</div>
+      <div style="display:flex;gap:8px">
+        <button class="buy" data-id="${game.id}">Comprar</button>
+        <button class="small-btn share" data-id="${game.id}">🔗</button>
+      </div>
+    </div>
+  `;
+  cardsEl.appendChild(el);
+}
+
+/* ESCAPE HTML */
+function escapeHtml(text){
+  return text.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+}
+
+/* RENDER TODOS LOS JUEGOS */
+juegos.forEach(createCard);
+
+/* ---------------------------
+   MODAL FUNCIONAL
+   --------------------------- */
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modal-img');
+const modalTitle = document.getElementById('modal-title');
+const modalDesc = document.getElementById('modal-desc');
+const modalPrice = document.getElementById('modal-price');
+const modalBuy = document.getElementById('modal-buy');
+const modalClose = document.getElementById('modal-close');
+
+cardsEl.addEventListener('click', e => {
+  const btn = e.target.closest('.buy, .share');
+  if(!btn) return;
+  const game = juegos.find(g=>g.id===btn.dataset.id);
+  if(!game) return;
+
+  modalImg.src = game.imagen;
+  modalTitle.textContent = game.nombre;
+  modalDesc.textContent = game.desc;
+  modalPrice.textContent = `Q${game.precioQ} • ${game.precioMX} MXN`;
+  modalBuy.href = `https://wa.me/50245168190?text=Hola!%20Quiero%20comprar%20${encodeURIComponent(game.nombre)}`;
+
+  modal.style.display = 'flex';
+  modal.setAttribute('aria-hidden','false');
+
+  if(e.target.classList.contains('share')){
+    navigator.clipboard.writeText(window.location.href+'#'+game.id).then(()=>alert("Enlace copiado al portapapeles!"));
+  }
+});
+
+modalClose.addEventListener('click', ()=>{modal.style.display='none'; modal.setAttribute('aria-hidden','true');});
+
+/* ---------------------------
+   MENU HAMBURGUESA
+   --------------------------- */
+const hamburger = document.getElementById('hamburger');
+const nav = document.querySelector('header nav');
+
+hamburger.addEventListener('click', ()=>{
+  nav.classList.toggle('show');
+});
+
+/* ---------------------------
+   SEARCH FUNCIONAL
+   --------------------------- */
+const searchInput = document.getElementById('search');
+searchInput.addEventListener('input', ()=>{
+  const term = searchInput.value.toLowerCase();
+  cardsEl.innerHTML='';
+  juegos.filter(j=>j.nombre.toLowerCase().includes(term)).forEach(createCard);
+});
+
+/* ---------------------------
+   LOADER
+   --------------------------- */
+window.addEventListener('load', ()=>{
+  setTimeout(()=>document.getElementById('loader').style.display='none',1200);
+});
+
+/* ---------------------------
+   CANVAS PARTICULAS
+   --------------------------- */
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+
+let particles = [];
+for(let i=0;i<120;i++){
+  particles.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    r:Math.random()*2+1,
+    dx:(Math.random()-0.5)*0.3,
+    dy:(Math.random()-0.5)*0.3
+  });
+}
+
+function animateParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    p.x+=p.dx; p.y+=p.dy;
+    if(p.x<0||p.x>canvas.width)p.dx*=-1;
+    if(p.y<0||p.y>canvas.height)p.dy*=-1;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,0,0,0.4)';
+    ctx.fill();
+  });
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+window.addEventListener('resize', ()=>{
+  canvas.width=innerWidth;
+  canvas.height=innerHeight;
+});
+</script>
+
 </body>
 </html>
