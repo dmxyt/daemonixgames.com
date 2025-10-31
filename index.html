@@ -194,8 +194,41 @@ footer{padding:18px;border-top:1px solid rgba(255,0,0,0.04);text-align:center;co
 
 <script>
 const juegos = [
-  { id: 'j1', nombre: "Blood and Dust pack", precioQ:100, precioMX:200, imagen:"https://cdn.jsdelivr.net/gh/dmxyt/gamestore@e666c077e57718ab71c52630c0d24dbf044b528e/20251027_204919.png", desc:"Acción y supervivencia - Xbox" }
+  { 
+    id: 'j1', 
+    nombre: "Blood and Dust Pack", 
+    precioQ: 100, 
+    precioMX: 200, 
+    imagen: "https://cdn.jsdelivr.net/gh/dmxyt/gamestore@e666c077e57718ab71c52630c0d24dbf044b528e/20251027_204919.png", 
+    desc: "Acción y supervivencia - Xbox" 
+  },
+  // Nuevo juego aquí
+  { 
+    id: 'j2', 
+    nombre: "Pandemic & Galaxy Pack", 
+    precioQ: 150, 
+    precioMX: 300, 
+    imagen: "https://cdn.jsdelivr.net/gh/dmxyt/gamestore@191c50057258d1b05950878b58b8b11d79fd69f1/20251030_224500.png", 
+    desc: "Accion, lucha, y horror - Xbox" 
+  },
+  { 
+    id: 'j3', 
+    nombre: "próximamente", 
+    precioQ: 0, 
+    precioMX: 0, 
+    imagen: "https://cdn.jsdelivr.net/gh/dmxyt/daemonixgames.com@5d4361ab47d6e6fd62cb2ed67f0730f67cb64354/20251010_200700.png", 
+    desc: "Descripción del juego - Xbox" 
+  },
+  { 
+    id: 'j4', 
+    nombre: "próximamente", 
+    precioQ: 0, 
+    precioMX: 0, 
+    imagen: "https://cdn.jsdelivr.net/gh/dmxyt/daemonixgames.com@5d4361ab47d6e6fd62cb2ed67f0730f67cb64354/20251010_200700.png", 
+    desc: "Descripción del juego - Xbox" 
+  }
 ];
+
 
 const cardsEl = document.getElementById('cards');
 function createCard(g){
