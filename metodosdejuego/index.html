@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Alien Games Store — Métodos Xbox One</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#050506;
+  --crimson:#c7002a;
+  --glow:rgba(199,0,42,0.6);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Orbitron',sans-serif;
+  background:var(--bg);
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* ---- FONDO ANIMADO ---- */
+.hero::before, .hero::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 20% 40%, rgba(199,0,42,0.1), transparent 70%),
+             radial-gradient(circle at 80% 60%, rgba(199,0,42,0.1), transparent 70%);
+  animation:moveBg 25s linear infinite;
+  z-index:0;
+}
+.hero::after{
+  background:repeating-radial-gradient(circle at 50% 50%, rgba(199,0,42,0.05) 0%, transparent 20%);
+  opacity:0.4;
+  mix-blend-mode:screen;
+}
+@keyframes moveBg{
+  0%{transform:scale(1) rotate(0deg);}
+  50%{transform:scale(1.2) rotate(15deg);}
+  100%{transform:scale(1) rotate(0deg);}
+}
+
+/* ---- HERO ---- */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  padding:40px 20px;
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:900px;
+  animation:fadeIn 2.2s ease forwards;
+}
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(50px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.hero h1{
+  font-size:48px;
+  color:var(--crimson);
+  text-shadow:0 0 25px var(--glow),0 0 50px var(--glow);
+  margin-bottom:25px;
+  animation:glowPulse 3s ease-in-out infinite;
+}
+@keyframes glowPulse{
+  0%,100%{text-shadow:0 0 20px var(--glow),0 0 40px var(--glow);}
+  50%{text-shadow:0 0 40px var(--glow),0 0 80px var(--glow);}
+}
+.hero p{
+  font-size:17px;
+  line-height:1.6;
+  color:#ccc;
+  margin-bottom:14px;
+}
+.hero strong{
+  color:var(--crimson);
+  text-shadow:0 0 10px var(--glow);
+}
+.scroll-btn{
+  margin-top:40px;
+  padding:12px 20px;
+  border:2px solid var(--crimson);
+  border-radius:10px;
+  background:transparent;
+  color:var(--crimson);
+  font-weight:700;
+  cursor:pointer;
+  transition:all .3s ease;
+  box-shadow:0 0 10px var(--glow);
+}
+.scroll-btn:hover{
+  background:var(--crimson);
+  color:#fff;
+  box-shadow:0 0 25px var(--glow);
+  transform:scale(1.08);
+}
+
+/* ---- MÉTODOS ---- */
+.container{
+  max-width:1100px;
+  margin:60px auto;
+  padding:0 18px;
+}
+h2{
+  color:var(--crimson);
+  text-shadow:0 0 20px var(--glow);
+  text-align:center;
+  margin-bottom:40px;
+  font-size:30px;
+  letter-spacing:1px;
+  animation:fadeIn 2s ease forwards;
+}
+.methods{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:30px;
+}
+.metodo{
+  background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.2));
+  border:1px solid rgba(199,0,42,0.2);
+  border-radius:18px;
+  padding:18px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.6),0 0 30px rgba(199,0,42,0.15);
+  transition:transform .4s ease, box-shadow .4s ease;
+  animation:floatIn 1.2s ease forwards;
+  opacity:0;
+}
+.metodo:nth-child(1){animation-delay:0.6s;}
+.metodo:nth-child(2){animation-delay:0.9s;}
+@keyframes floatIn{
+  from{opacity:0;transform:translateY(60px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.metodo:hover{
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:0 20px 60px rgba(0,0,0,0.8),0 0 45px var(--glow);
+}
+.metodo h3{
+  color:var(--crimson);
+  margin-bottom:12px;
+  font-size:20px;
+  text-shadow:0 0 10px var(--glow);
+}
+iframe{
+  width:100%;
+  height:300px;
+  border:0;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.7);
+}
+.open-y{
+  display:inline-block;
+  margin-top:10px;
+  color:var(--crimson);
+  text-decoration:none;
+  border:1px solid var(--crimson);
+  padding:7px 12px;
+  border-radius:8px;
+  font-size:13px;
+  transition:all .3s ease;
+}
+.open-y:hover{
+  background:var(--crimson);
+  color:#fff;
+  box-shadow:0 0 18px var(--glow);
+  transform:scale(1.05);
+}
+
+/* ---- FOOTER ---- */
+footer{
+  text-align:center;
+  color:#999;
+  padding:40px 0;
+  border-top:1px solid rgba(199,0,42,0.1);
+  font-size:13px;
+  letter-spacing:0.5px;
+}
+
+/* ---- PARTICULAS ---- */
+canvas#particles {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:1;
+  pointer-events:none;
+}
+
+/* smooth scroll */
+html{scroll-behavior:smooth;}
+</style>
+</head>
+<body>
+
+<section class="hero" id="inicio">
+  <canvas id="particles"></canvas>
+  <div class="hero-content">
+    <h1>Alien Games Store & Alexios</h1>
+    <p>En <strong>Alien Games Store</strong>, nuestra misión es llevarte más allá del juego.  
+    Junto a <strong>Alexios</strong>, traemos para ti los <strong>2 métodos exclusivos</strong> para <strong>Xbox One</strong> y <strong>Xbox Series S|X</strong> — creados para que disfrutes de una experiencia única, rápida y sin complicaciones.</p>
+
+    <p>Con estos métodos, obtendrás acceso a <strong>juegos premium</strong>, beneficios ocultos y la oportunidad de aprovechar <strong>lo mejor de Xbox sin pagar de más</strong>.</p>
+
+    <p>Disfruta de tu compra o de los <strong>videojuegos gratis que Alexios comparte</strong> con toda la comunidad gamer.  
+    Porque esto no es solo una tienda...  
+    <strong>Es un legado de jugadores para jugadores.</strong> 👽🔥</p>
+
+    <button class="scroll-btn" onclick="document.getElementById('metodos').scrollIntoView({behavior:'smooth'})">
+      Ver los métodos ↓
+    </button>
+  </div>
+</section>
+
+<main class="container" id="metodos">
+  <h2>Métodos de Xbox One / Series S|X</h2>
+
+  <div class="methods">
+    <div class="metodo">
+      <h3>Método #1</h3>
+      <iframe src="https://www.youtube.com/embed/UWuasKd3INE" allowfullscreen></iframe>
+      <a href="https://youtu.be/UWuasKd3INE?si=JgQ4PBk_ja_xTfr_" target="_blank" class="open-y">Abrir en YouTube</a>
+    </div>
+
+    <div class="metodo">
+      <h3>Método Alternativo (más fácil)</h3>
+      <iframe src="https://www.youtube.com/embed/kMOaQEG_SdA" allowfullscreen></iframe>
+      <a href="https://youtu.be/kMOaQEG_SdA?si=DtoWVEV4omcRqx6E" target="_blank" class="open-y">Abrir en YouTube</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  © 👽 Alien Games Store — Alexios Cabrera | All Rights Reserved
+</footer>
+
+<script>
+/* Partículas carmesí flotantes */
+const canvas=document.getElementById('particles');
+const ctx=canvas.getContext('2d');
+let particles=[];
+function resize(){
+  canvas.width=innerWidth;
+  canvas.height=innerHeight;
+}
+window.addEventListener('resize',resize);
+resize();
+for(let i=0;i<60;i++){
+  particles.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    r:Math.random()*2+0.5,
+    dx:(Math.random()-0.5)*0.3,
+    dy:(Math.random()-0.5)*0.3
+  });
+}
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle='rgba(199,0,42,0.6)';
+  particles.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fill();
+    p.x+=p.dx;
+    p.y+=p.dy;
+    if(p.x<0||p.x>canvas.width)p.dx*=-1;
+    if(p.y<0||p.y>canvas.height)p.dy*=-1;
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+
+</body>
+</html>
