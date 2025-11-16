@@ -1,0 +1,119 @@
+<!DOCTYPE html><html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DaemonixGames — Contacto</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    :root{
+        --bg:#050506;
+        --card:#0a0b0d;
+        --accent:#b00020;
+        --cyan:#ff2b4f;
+        --text:#ffffff;
+    }
+    body{
+        margin:0;
+        font-family:"Orbitron", sans-serif;
+        background:var(--bg);
+        color:var(--text);
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        min-height:100vh;
+        padding:20px;
+    }
+    .container{
+        max-width:600px;
+        width:100%;
+        background:var(--card);
+        border:2px solid var(--accent);
+        padding:30px;
+        border-radius:20px;
+        box-shadow:0 0 25px var(--accent);
+        animation:fadeIn 1s ease forwards;
+    }
+    h1{
+        text-align:center;
+        margin-bottom:20px;
+        font-size:2rem;
+        text-shadow:0 0 15px var(--cyan);
+    }
+    label{
+        display:block;
+        margin:15px 0 5px;
+        font-weight:700;
+    }
+    input, textarea{
+        width:100%;
+        padding:12px;
+        border-radius:10px;
+        border:none;
+        outline:none;
+        margin-bottom:10px;
+        background:#111118;
+        color:var(--text);
+        font-size:1rem;
+        border:2px solid #1b1b25;
+        transition:0.2s;
+    }
+    input:focus, textarea:focus{
+        border-color:var(--cyan);
+        box-shadow:0 0 10px var(--cyan);
+    }
+    button{
+        width:100%;
+        padding:15px;
+        font-size:1.2rem;
+        font-weight:700;
+        border:none;
+        border-radius:10px;
+        margin-top:10px;
+        cursor:pointer;
+        background:linear-gradient(90deg, var(--accent), var(--cyan));
+        color:#000;
+        box-shadow:0 0 15px var(--accent);
+        transition:0.3s;
+    }
+    button:hover{
+        transform:scale(1.05);
+        box-shadow:0 0 25px var(--cyan);
+    }
+    @keyframes fadeIn{
+        from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);}
+    }
+    .info{
+        margin-top:30px;
+        text-align:center;
+        font-size:0.9rem;
+        color:#ccc;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contacto</h1>
+        <form action="mailto:daemonixgames@gmail.com" method="post" enctype="text/plain">
+            <label>Nombre</label>
+            <input type="text" name="nombre" placeholder="Tu nombre" required><label>Correo</label>
+        <input type="email" name="correo" placeholder="Tu correo" required>
+
+        <label>Mensaje</label>
+        <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje..." required></textarea>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <div class="info">
+        Soporte oficial • DaemonixGames.com<br>
+        Respuesta garantizada entre 24h y 48h.
+            <div class="social" style="margin-top:25px; text-align:center;">
+        <h2 style="font-size:1.2rem; margin-bottom:15px; text-shadow:0 0 10px var(--accent);">Redes Sociales</h2>
+        <a href="https://facebook.com/DaemonixGames" target="_blank" style="color:var(--accent); display:block; margin:8px 0; font-weight:700;">Facebook</a>
+        <a href="https://wa.me/50245168190" target="_blank" style="color:var(--accent); display:block; margin:8px 0; font-weight:700;">WhatsApp</a>
+        <a href="https://instagram.com/DaemonixGames" target="_blank" style="color:var(--accent); display:block; margin:8px 0; font-weight:700;">Instagram</a>
+    </div>
+</div>
+
+</body>
+</html>
