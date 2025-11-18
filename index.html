@@ -1,298 +1,260 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="theme-color" content="#ff0000" />
-<meta name="description" content="DaemonixGames Store: Tienda especializada en juegos Xbox. Con ofertas únicas y exclusivas." />
-<title>DaemonixGames | Xbox Store</title>
-
-<!-- Fuente -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DaemonixGames | Épico Carmesí</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --red-1:#ff0033;
-  --red-2:#b20000;
-  --bg:#060405;
-  --card-radius:18px;
-  --glass: rgba(255,255,255,0.03);
-  --accent: linear-gradient(90deg,var(--red-1),var(--red-2));
-  --text:#ffffff;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{
-  font-family:'Orbitron',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  overflow-x:hidden;
+:root {
+  --carmesí: #c11212;
 }
 
-/* CANVAS PARTICULAS */
-#bg-canvas{position:fixed; inset:0; width:100%; height:100%; z-index:0; display:block;}
-
-/* LOADER */
-#loader{
-  position:fixed; inset:0; display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.95));
-  z-index:3000; flex-direction:column; gap:18px;
+/* Reset */
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:black;
+  overflow:hidden;
+  height:100vh;
+  font-family:'Orbitron', sans-serif;
 }
-.loader-ring{
-  width:110px;height:110px;border-radius:50%;
-  background:conic-gradient(var(--red-1), transparent 40%, rgba(255,0,0,0.05));
-  filter:blur(6px);
+
+/* GIF de fondo filtrado carmesí */
+.bg-gif {
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background: url('https://cdn.jsdelivr.net/gh/dmxyt/gamestore@4e041e2b30db11a0c09e8959af32077241b3eda4/fc8fa7f1b1241bdc8d45509010647fbb.gif') center center / cover no-repeat;
+  z-index:-5;
+  filter: brightness(0.5) contrast(1.2) hue-rotate(-10deg) saturate(3);
+  animation: bgPulse 6s ease-in-out infinite alternate;
+}
+
+@keyframes bgPulse {
+  0% { filter: brightness(0.45) contrast(1) hue-rotate(-10deg) saturate(3); }
+  50% { filter: brightness(0.6) contrast(1.3) hue-rotate(-10deg) saturate(3); }
+  100% { filter: brightness(0.5) contrast(1.2) hue-rotate(-10deg) saturate(3); }
+}
+
+/* Contenedor central */
+.container {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
   position:relative;
-  animation:spin 1.8s linear infinite;
-  box-shadow:0 0 30px rgba(255,0,0,0.18), 0 0 60px rgba(178,0,0,0.09);
-  display:flex;align-items:center;justify-content:center;
+  z-index:1;
 }
-.loader-core{
-  width:46px;height:46px;border-radius:50%;
-  background:radial-gradient(circle at 30% 30%, #fff8 0%, rgba(255,255,255,0.03) 6%, transparent 30%),linear-gradient(180deg,#1b0000,#3a0000);
-  box-shadow:0 0 12px rgba(255,0,0,0.35);
-  transform:scale(0.95);
+
+/* Logo flotante con aura carmesí */
+.logo {
+  width:300px;
+  animation: floatLogo 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 50px var(--carmesí)) drop-shadow(0 0 100px var(--carmesí));
+  position: relative;
+  z-index:3;
 }
-@keyframes spin{to{transform:rotate(360deg)}}
-.loader-text{font-size:1rem;color:var(--red-1);letter-spacing:1px;text-align:center; max-width:90%; text-shadow: 0 0 12px rgba(255,0,0,0.18);}
 
-/* HEADER */
-header{
-  position:relative; z-index:2000;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:10px;padding:14px 22px;
-  background: linear-gradient(90deg, rgba(0,0,0,0.45), rgba(0,0,0,0.2));
-  border-bottom:1px solid rgba(255,0,0,0.06);
-  backdrop-filter: blur(6px);
+.logo::after {
+  content:"";
+  position:absolute;
+  top:50%; left:50%;
+  width:500px; height:500px;
+  transform:translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(193,18,18,0.3), transparent 70%);
+  border-radius:50%;
+  animation: pulse 3s infinite alternate;
+  z-index:-1;
 }
-.logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.25rem}
-.logo img{width:46px;height:46px;border-radius:8px;object-fit:cover;filter:drop-shadow(0 0 8px rgba(255,0,0,0.25))}
-nav{display:flex;align-items:center;gap:12px}
-.menu-toggle{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 10px;border-radius:12px;cursor:pointer;color:var(--text)}
-.menu-toggle:hover{box-shadow:0 0 18px rgba(255,0,0,0.12)}
-#hamburger{display:none}
 
-/* MAIN */
-main{position:relative;z-index:1000;padding:22px;min-height:calc(100vh - 150px)}
-.hero{
-  display:flex;align-items:center;gap:18px;margin-bottom:18px;
-  background:linear-gradient(90deg, rgba(255,0,0,0.03), rgba(178,0,0,0.02));
-  padding:16px;border-radius:14px;border:1px solid rgba(255,0,0,0.04);
+@keyframes floatLogo {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-45px) rotate(10deg); }
 }
-.hero .title{font-size:1.35rem;font-weight:700}
-.hero .subtitle{font-size:0.88rem;color:rgba(255,255,255,0.75)}
-.controls{display:flex;gap:12px;align-items:center;margin:12px 0 22px;flex-wrap:wrap}
-.search{flex:1;max-width:420px;background:var(--glass);border:1px solid rgba(255,0,0,0.06);padding:10px 12px;border-radius:12px;color:#fff;display:flex;align-items:center;gap:8px;}
-.search input{flex:1;background:transparent;border:0;color:var(--text);outline:none;font-size:0.95rem}
 
-/* CARDS */
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:18px;}
-.card{background:linear-gradient(180deg, rgba(255,0,0,0.025), rgba(0,0,0,0.12));border-radius:14px;padding:10px;position:relative;overflow:hidden;border:1px solid rgba(255,0,0,0.04);transition:transform .22s ease, box-shadow .22s ease;}
-.card:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(255,0,0,0.06)}
-.card img{width:100%;height:160px;object-fit:cover;border-radius:10px;display:block;margin-bottom:10px}
-.card h4{font-size:0.95rem;margin-bottom:6px}
-.card .meta{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.price{background:rgba(0,0,0,0.6);padding:6px 8px;border-radius:10px;font-weight:700;border:1px solid rgba(255,0,0,0.05)}
-.buy{background:linear-gradient(90deg,var(--red-1),var(--red-2));padding:8px 10px;border-radius:10px;border:0;color:#fff;cursor:pointer;font-weight:800}
-
-/* MODAL */
-#modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.7);z-index:4000;padding:20px;}
-.modal-card{width:100%;max-width:520px;background:#0b0b0b;border-radius:14px;padding:18px;border:1px solid rgba(255,0,0,0.08);box-shadow:0 20px 60px rgba(0,0,0,0.6);}
-.modal-card img{width:180px;height:160px;object-fit:cover;border-radius:10px}
-.modal-grid{display:grid;grid-template-columns:180px 1fr;gap:14px;align-items:center}
-
-/* FOOTER */
-footer{padding:18px;border-top:1px solid rgba(255,0,0,0.04);text-align:center;color:rgba(255,255,255,0.6);margin-top:30px}
-
-/* RESPONSIVE HAMBURGUESA */
-@media(max-width:760px){
-  header nav{
-    display:none;
-    flex-direction:column;
-    gap:12px;
-    background:rgba(0,0,0,0.85);
-    position:absolute;
-    top:60px;
-    right:22px;
-    padding:12px;
-    border-radius:12px;
-    border:1px solid rgba(255,0,0,0.1);
-    backdrop-filter: blur(6px);
-    z-index:2000;
-  }
-  header nav.show{display:flex;animation:slideDown 0.25s ease forwards;}
-  #hamburger{display:flex;background:var(--red-1);border:none;color:#fff;font-size:1.5rem;padding:6px 12px;border-radius:8px;cursor:pointer;}
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(1); opacity:0.6; }
+  100% { transform: translate(-50%, -50%) scale(1.8); opacity:0.95; }
 }
-@media(min-width:761px){#hamburger{display:none;}}
-@keyframes slideDown{0%{opacity:0;transform:translateY(-10px);}100%{opacity:1;transform:translateY(0);}}
+
+/* Ondas de energía carmesí */
+.energy-wave {
+  position:absolute;
+  border:2px solid var(--carmesí);
+  border-radius:50%;
+  opacity:0.4;
+  animation: wave 6s linear infinite;
+  z-index:2;
+}
+
+@keyframes wave {
+  0% { transform: scale(0.5); opacity:0.3; }
+  50% { transform: scale(1.5); opacity:0.6; }
+  100% { transform: scale(2); opacity:0; }
+}
+
+/* Partículas carmesí */
+.particles {
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  z-index:-2;
+  overflow:hidden;
+}
+
+.particle {
+  position:absolute;
+  background: var(--carmesí);
+  border-radius:50%;
+  opacity:0.7;
+  animation: float 12s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh) translateX(0) scale(1); opacity:0; }
+  50% { opacity:1; }
+  100% { transform: translateY(-10vh) translateX(50vw) scale(0.5); opacity:0; }
+}
+
+/* Chispas carmesí */
+.spark {
+  position:absolute;
+  width:2px; height:2px;
+  background: var(--carmesí);
+  border-radius:50%;
+  opacity:0.8;
+  animation: sparkMove 1.5s linear infinite;
+  z-index:3;
+}
+
+@keyframes sparkMove {
+  0% { transform: translate(0,0) scale(1); opacity:1; }
+  50% { transform: translate(calc(-60px + 120px * var(--randX)), calc(-60px + 120px * var(--randY))) scale(0.5); opacity:0.5; }
+  100% { transform: translate(0,0) scale(1); opacity:1; }
+}
+
+/* Fuego digital carmesí */
+.fire {
+  position:absolute;
+  width:6px; height:6px;
+  border-radius:50%;
+  background: radial-gradient(circle, rgba(193,18,18,0.9), rgba(193,18,18,0));
+  animation: fireMove 2s linear infinite;
+  z-index:2;
+}
+
+@keyframes fireMove {
+  0% { transform: translate(0,0) scale(1); opacity:0.7; }
+  50% { transform: translate(calc(-40px + 80px * var(--randX)), calc(-40px + 80px * var(--randY))) scale(0.3); opacity:0.5; }
+  100% { transform: translate(0,0) scale(1); opacity:0.7; }
+}
+
+/* Destellos carmesí */
+.flash {
+  position:absolute;
+  width:4px; height:4px;
+  border-radius:50%;
+  background: var(--carmesí);
+  opacity:0;
+  animation: flashMove 2s linear infinite;
+  z-index:4;
+}
+
+@keyframes flashMove {
+  0%,100% { opacity:0; }
+  50% { opacity:0.8; transform: translate(calc(-100px + 200px * var(--randX)), calc(-100px + 200px * var(--randY))); }
+}
+
+/* Rayos de energía carmesí */
+.lightning {
+  position:absolute;
+  width:2px;
+  height:80px;
+  background: var(--carmesí);
+  opacity:0.5;
+  animation: lightningMove 1.5s linear infinite;
+  z-index:3;
+}
+
+@keyframes lightningMove {
+  0% { transform: rotate(0deg) translate(0,0); opacity:0; }
+  25% { opacity:1; }
+  50% { transform: rotate(20deg) translate(50px,-50px); opacity:0.7; }
+  75% { transform: rotate(-20deg) translate(-50px,50px); opacity:1; }
+  100% { transform: rotate(0deg) translate(0,0); opacity:0; }
+}
 </style>
 </head>
 <body>
 
-<canvas id="bg-canvas"></canvas>
+<div class="bg-gif"></div>
 
-<div id="loader">
-  <div class="loader-ring"><div class="loader-core"></div></div>
-  <div class="loader-text">Invocando el poder del <strong>Xbox Daemonix</strong>...</div>
+<div class="container">
+  <img src="https://cdn.jsdelivr.net/gh/dmxyt/daemonixgames.com@6db24bd9f4989e40d015340725b72741bea52f74/file_000000008c38624691dbbe29610d2d93.png" class="logo">
+  <div class="energy-wave" style="width:300px; height:300px; animation-delay:0s;"></div>
+  <div class="energy-wave" style="width:400px; height:400px; animation-delay:1s;"></div>
+  <div class="energy-wave" style="width:500px; height:500px; animation-delay:2s;"></div>
 </div>
 
-<header>
-  <div class="logo">
-    <img src="https://cdn.jsdelivr.net/gh/dmxyt/daemonixgames.com@6db24bd9f4989e40d015340725b72741bea52f74/file_000000008c38624691dbbe29610d2d93.png" alt="Daemonix logo">
-    Daemonix <span style="color:var(--red-1);margin-left:6px;font-weight:900">Xbox Store</span>
-  </div>
-  <button class="menu-toggle" id="hamburger">☰</button>
-  <nav>
-    <button class="menu-toggle" id="btn-offers">Ofertas</button>
-    <button class="menu-toggle" id="btn-packs">Packs</button>
-    <button class="menu-toggle" id="btn-methods">Métodos</button>
-    <button class="menu-toggle" id="btn-contact">Contacto</button>
-  </nav>
-</header>
-
-<main>
-  <section class="hero">
-    <div>
-      <div class="title">Catálogo Xbox - Daemonix</div>
-      <div class="subtitle muted">Solo Xbox — precios en Guatemala (Q) y México (MXN).</div>
-    </div>
-  </section>
-
-  <div class="controls">
-    <div class="search">
-      <input id="search" placeholder="🔍 Buscar juego..." />
-    </div>
-  </div>
-
-  <div class="cards" id="cards"></div>
-</main>
-
-<div id="modal">
-  <div class="modal-card">
-    <div style="display:flex;justify-content:space-between;align-items:start">
-      <div style="font-weight:900;color:var(--red-1)">Confirmar compra</div>
-      <button id="modal-close" class="small-btn">Cerrar</button>
-    </div>
-    <div style="height:10px"></div>
-    <div class="modal-grid">
-      <img id="modal-img" src="" alt="">
-      <div>
-        <h3 id="modal-title"></h3>
-        <div id="modal-desc" class="muted"></div>
-        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
-          <div class="price" id="modal-price"></div>
-          <a class="buy" id="modal-buy" target="_blank">Comprar por Facebook</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<footer>© Daemonix™ • Todos los derechos reservados • AlienGames Store</footer>
+<div class="particles"></div>
 
 <script>
-const juegos = [
-  { 
-    id: 'j1', 
-    nombre: "Blood and Dust Pack", 
-    precioQ: 50, 
-    precioMX: 75, 
-    imagen: "https://cdn.jsdelivr.net/gh/dmxyt/gamestore@8c1aafb2a52d875a407ef7f305431c06f311e3f2/20251113_133730.png", 
-    desc: "Acción y supervivencia - Xbox" 
-  },
-  // Nuevo juego aquí
-  { 
-    id: 'j2', 
-    nombre: "Pandemic & Galaxy Pack", 
-    precioQ: 75, 
-    precioMX: 100, 
-    imagen: "https://cdn.jsdelivr.net/gh/dmxyt/gamestore@191c50057258d1b05950878b58b8b11d79fd69f1/20251030_224500.png", 
-    desc: "Accion, lucha, y horror - Xbox" 
-  },
-  { 
-    id: 'j3', 
-    nombre: "Legacy Pack (55 Juegos)", 
-    precioQ: 50, 
-    precioMX: 75, 
-    imagen: "https://cdn.jsdelivr.net/gh/dmxyt/gamestore@976aa6ff330ccf3ee34a7974ec336b861e79060c/20251031_104553.png", 
-    desc: "Acción, Sigilo, y muchos más - Xbox" 
-  },
-  { 
-    id: 'j4', 
-    nombre: "ShadowOps: Blood & Justice Bundle", 
-    precioQ: 75, 
-    precioMX: 150, 
-    imagen: "https://cdn.jsdelivr.net/gh/dmxyt/gamestore@b7be51ec8a769d725d5683cdab380707bd933fdd/20251113_140528.png", 
-    desc: "Descripción del juego - Xbox" 
-  },
-  
-    { 
-    id: 'j5', 
-    nombre: "próximamente", 
-    precioQ: 0, 
-    precioMX: 0, 
-    imagen: "https://cdn.jsdelivr.net/gh/dmxyt/daemonixgames.com@5d4361ab47d6e6fd62cb2ed67f0730f67cb64354/20251010_200700.png", 
-    desc: "Descripción del juego - Xbox" 
-  },
-  
-    { 
-    id: 'j6', 
-    nombre: "próximamente", 
-    precioQ: 0, 
-    precioMX: 0, 
-    imagen: "https://cdn.jsdelivr.net/gh/dmxyt/daemonixgames.com@5d4361ab47d6e6fd62cb2ed67f0730f67cb64354/20251010_200700.png", 
-    desc: "Descripción del juego - Xbox" 
-  }
-];
-
-
-const cardsEl = document.getElementById('cards');
-function createCard(g){
-  const el=document.createElement('div');
-  el.className='card';
-  el.innerHTML=`<img src="${g.imagen}"><h4>${g.nombre}</h4>
-  <div class="meta"><div class="price">Q${g.precioQ} • ${g.precioMX} MXN</div>
-  <div><button class="buy" data-id="${g.id}">Comprar</button></div></div>`;
-  cardsEl.appendChild(el);
+// Partículas
+const particleContainer = document.querySelector('.particles');
+for(let i=0;i<250;i++){
+  const particle = document.createElement('div');
+  particle.classList.add('particle');
+  particle.style.left = Math.random()*100 + 'vw';
+  particle.style.width = 2 + Math.random()*5 + 'px';
+  particle.style.height = particle.style.width;
+  particle.style.animationDuration = 4 + Math.random()*12 + 's';
+  particleContainer.appendChild(particle);
 }
-juegos.forEach(createCard);
 
-const modal=document.getElementById('modal');
-const modalImg=document.getElementById('modal-img');
-const modalTitle=document.getElementById('modal-title');
-const modalDesc=document.getElementById('modal-desc');
-const modalPrice=document.getElementById('modal-price');
-const modalBuy=document.getElementById('modal-buy');
-const modalClose=document.getElementById('modal-close');
+// Chispas
+const container = document.querySelector('.container');
+for(let i=0;i<100;i++){
+  const spark = document.createElement('div');
+  spark.classList.add('spark');
+  spark.style.top = '50%';
+  spark.style.left = '50%';
+  spark.style.setProperty('--randX', Math.random());
+  spark.style.setProperty('--randY', Math.random());
+  container.appendChild(spark);
+}
 
-cardsEl.addEventListener('click',e=>{
-  const btn=e.target.closest('.buy');
-  if(!btn)return;
-  const g=juegos.find(x=>x.id===btn.dataset.id);
-  modalImg.src=g.imagen;
-  modalTitle.textContent=g.nombre;
-  modalDesc.textContent=g.desc;
-  modalPrice.textContent=`Q${g.precioQ} • ${g.precioMX} MXN`;
-  const mensaje=`Hola, quiero comprar ${g.nombre} en DaemonixGames.`;
-  const facebookID='AlienGamesStore';
-  modalBuy.href=`https://m.me/${facebookID}?text=${encodeURIComponent(mensaje)}`;
-  modal.style.display='flex';
-});
+// Fuego digital
+for(let i=0;i<80;i++){
+  const fire = document.createElement('div');
+  fire.classList.add('fire');
+  fire.style.top = '50%';
+  fire.style.left = '50%';
+  fire.style.setProperty('--randX', Math.random());
+  fire.style.setProperty('--randY', Math.random());
+  container.appendChild(fire);
+}
 
-modalClose.addEventListener('click',()=>modal.style.display='none');
+// Destellos
+for(let i=0;i<60;i++){
+  const flash = document.createElement('div');
+  flash.classList.add('flash');
+  flash.style.top = '50%';
+  flash.style.left = '50%';
+  flash.style.setProperty('--randX', Math.random());
+  flash.style.setProperty('--randY', Math.random());
+  container.appendChild(flash);
+}
 
-/* MENU HAMBURGUESA */
-const hamburger=document.getElementById('hamburger');
-const nav=document.querySelector('header nav');
-hamburger.addEventListener('click',()=>{nav.classList.toggle('show');});
+// Rayos carmesí
+for(let i=0;i<40;i++){
+  const lightning = document.createElement('div');
+  lightning.classList.add('lightning');
+  lightning.style.top = '50%';
+  lightning.style.left = '50%';
+  container.appendChild(lightning);
+}
 </script>
-<script>
-window.addEventListener('load', () => {
-  const loader = document.getElementById('loader');
-  loader.style.display = 'none'; // Oculta el loader
-});
-</script>
+
 </body>
 </html>
