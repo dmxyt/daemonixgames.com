@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>DaemonixGames | Cuenta Xbox</title>
+
+<style>
+body{
+  font-family:'Orbitron',sans-serif;
+  background:#060405;
+  color:#fff;
+  margin:0;
+  padding:0;
+}
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+.header{
+  text-align:center;
+  padding:20px 0;
+}
+.header h1{
+  font-size:1.8rem;
+  color:#ff0033;
+  text-shadow:0 0 12px #ff0033;
+}
+
+/* IMAGEN del PACK */
+.pack-img{
+  width:100%;
+  max-width:420px;
+  margin:20px auto;
+  display:block;
+  border-radius:14px;
+  border:1px solid rgba(255,0,0,0.2);
+  box-shadow:0 0 20px rgba(255,0,0,0.25);
+  transition:0.25s ease;
+}
+.pack-img:hover{
+  transform:scale(1.03);
+  box-shadow:0 0 35px rgba(255,0,0,0.45);
+}
+
+.card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,0,0,0.1);
+  border-radius:14px;
+  padding:20px;
+  margin-top:20px;
+}
+.card h2{
+  color:#ff0033;
+  font-size:1.3rem;
+  margin-bottom:10px;
+  text-shadow:0 0 8px #ff0033;
+}
+.platforms{
+  margin-bottom:14px;
+  font-size:0.95rem;
+  opacity:0.85;
+}
+.games-list{
+  list-style:none;
+  padding-left:0;
+  margin-top:12px;
+  line-height:1.55rem;
+}
+.games-list li{
+  background:rgba(255,0,0,0.05);
+  margin-bottom:6px;
+  padding:6px 10px;
+  border-radius:8px;
+  border-left:3px solid #ff0033;
+}
+.btn{
+  display:block;
+  text-align:center;
+  margin-top:18px;
+  padding:12px;
+  background:linear-gradient(90deg,#ff0033,#b20000);
+  border-radius:10px;
+  color:#fff;
+  font-weight:900;
+  text-decoration:none;
+  font-size:1.1rem;
+}
+.btn:hover{
+  filter:brightness(1.15);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1 id="pack-title"></h1>
+  </div>
+
+  <!-- IMAGEN DEL PACK -->
+  <img id="pack-img" class="pack-img" src="" alt="Imagen del pack">
+
+  <div class="card">
+    <h2>Plataformas compatibles</h2>
+    <div class="platforms" id="platforms"></div>
+
+    <h2>Lista de juegos incluidos</h2>
+    <ul class="games-list" id="games-list"></ul>
+
+    <a class="btn" id="btn-messenger" target="_blank">
+      💬 Click aquí para conseguirla
+    </a>
+  </div>
+
+</div>
+
+<script>
+// ===============================
+// CONFIGURACIÓN DEL PACK
+// ===============================
+
+const pack = {
+  nombre: "Blood and Dust Pack",
+  imagen: "https://cdn.jsdelivr.net/gh/dmxyt/gamestore@8c1aafb2a52d875a407ef7f305431c06f311e3f2/20251113_133730.png",
+  plataformas: ["Xbox One", "Xbox Series X/S"],
+  juegos: [
+    "Red Dead Redemption 2 Ultimate Edition",
+    "Dead Island 2 Ultimate Edition",
+    "Alice Madness Returns",
+    "The House of The Dead Remake",
+    "Metro Last Light",
+    "Metro Redux",
+    "Metro Exodus"
+  ]
+};
+
+// ===============================
+// CARGAR DATOS EN LA PÁGINA
+// ===============================
+
+document.getElementById("pack-title").textContent = pack.nombre;
+
+// Imagen
+document.getElementById("pack-img").src = pack.imagen;
+
+document.getElementById("platforms").textContent = pack.plataformas.join(" • ");
+
+// Lista de juegos
+const gamesList = document.getElementById("games-list");
+pack.juegos.forEach(j => {
+  const li = document.createElement("li");
+  li.textContent = j;
+  gamesList.appendChild(li);
+});
+
+// ===============================
+// BOTÓN DE MENSAJE AUTOMÁTICO
+// ===============================
+
+const mensaje = `Hola quiero conseguir ${pack.nombre} en DaemonixGames, ya te envío mis requisitos.`;
+const facebookID = "DaemonixGames";
+
+document.getElementById("btn-messenger").href =
+  `https://m.me/${facebookID}?text=${encodeURIComponent(mensaje)}`;
+
+</script>
+
+</body>
+</html>
