@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eunice - Día de la Mujer</title>
+
+<title>Eunice 💜</title>
 
 <style>
+
+/* RESET */
 
 *{
 margin:0;
@@ -14,37 +19,53 @@ box-sizing:border-box;
 font-family:'Segoe UI',sans-serif;
 }
 
+/* FONDO */
+
 body{
+
 height:100vh;
 overflow:hidden;
-background:radial-gradient(circle at center,#4a0a7a,#120020,#000);
-color:white;
+
 display:flex;
 align-items:center;
 justify-content:center;
+
 text-align:center;
+color:white;
+
+background:radial-gradient(circle at center,#6a0dad,#22003d,#000);
+
 }
 
 /* CONTENEDOR */
 
 .container{
+
 background:rgba(0,0,0,0.45);
 backdrop-filter:blur(15px);
-padding:45px;
+
+padding:40px;
 border-radius:25px;
+
 max-width:650px;
-box-shadow:0 0 35px rgba(255,105,180,0.5);
-animation:fade 2s;
+width:90%;
+
+box-shadow:0 0 40px rgba(255,0,150,0.5);
+
+animation:fade 1.5s;
+
 }
 
 @keyframes fade{
-from{opacity:0; transform:translateY(40px);}
+from{opacity:0;transform:translateY(40px);}
 to{opacity:1;}
 }
 
+/* TITULOS */
+
 h1{
-font-size:38px;
-margin-bottom:10px;
+font-size:36px;
+margin-bottom:8px;
 }
 
 h2{
@@ -55,131 +76,197 @@ margin-bottom:20px;
 /* MENSAJES */
 
 #typing{
-font-size:19px;
-min-height:80px;
-margin-bottom:25px;
-transition:0.5s;
+font-size:20px;
+min-height:70px;
+margin-bottom:20px;
+transition:.5s;
 }
 
 /* BOTONES */
 
 button{
+
 background:linear-gradient(45deg,#ff4da6,#b84dff);
+
 border:none;
-padding:14px 30px;
+padding:13px 28px;
+
 border-radius:30px;
+
 color:white;
 font-size:16px;
+
 cursor:pointer;
+
 margin:5px;
-transition:0.3s;
-box-shadow:0 0 15px rgba(255,0,150,0.7);
+
+transition:.3s;
+
+box-shadow:0 0 18px rgba(255,0,150,0.7);
+
 }
 
 button:hover{
 transform:scale(1.1);
 }
 
-/* MENSAJE SECRETO */
-
-.secret{
-display:none;
-margin-top:20px;
-font-size:20px;
-color:#ffd6ff;
-}
-
-/* FOTO */
+/* FOTO CORAZON */
 
 .photo{
-margin-top:20px;
-animation:float 6s infinite ease-in-out;
+
+width:200px;
+height:200px;
+
+margin:25px auto;
+
+position:relative;
+
+animation:heartbeat 3s infinite;
+
+}
+
+@keyframes heartbeat{
+
+0%{transform:scale(1)}
+50%{transform:scale(1.08)}
+100%{transform:scale(1)}
+
 }
 
 .photo img{
-width:160px;
-border-radius:20px;
-box-shadow:0 0 25px pink;
+
+width:100%;
+height:100%;
+
+object-fit:cover;
+
+clip-path: path("M100 30 C100 -10 0 -10 0 70 C0 130 100 190 100 190 C100 190 200 130 200 70 C200 -10 100 -10 100 30 Z");
+
+box-shadow:0 0 35px pink;
+
+}
+
+/* MENSAJE SECRETO */
+
+.secret{
+
+display:none;
+margin-top:20px;
+
+font-size:20px;
+line-height:1.6;
+
+color:#ffd6ff;
+
 }
 
 /* CONTADOR */
 
 .counter{
+
 margin-top:15px;
 font-size:15px;
 color:#ffc9ff;
+
 }
 
 /* CORAZONES */
 
 .heart{
+
 position:absolute;
 font-size:22px;
 animation:floatUp linear infinite;
+
 }
 
 @keyframes floatUp{
-0%{transform:translateY(100vh);}
-100%{transform:translateY(-10vh);opacity:0;}
+
+0%{transform:translateY(100vh)}
+100%{transform:translateY(-10vh);opacity:0}
+
 }
 
 /* ROSAS */
 
 .rose{
+
 position:absolute;
 font-size:24px;
 animation:fall linear infinite;
+
 }
 
 @keyframes fall{
-0%{transform:translateY(-10vh);}
-100%{transform:translateY(110vh);}
+
+0%{transform:translateY(-10vh)}
+100%{transform:translateY(110vh)}
+
 }
 
 /* ESTRELLAS */
 
 .star{
+
 position:absolute;
+
+width:2px;
+height:2px;
+
 background:white;
+
 border-radius:50%;
-opacity:0.7;
+
+opacity:.7;
+
 animation:twinkle 3s infinite alternate;
+
 }
 
 @keyframes twinkle{
-from{opacity:0.3;}
-to{opacity:1;}
+from{opacity:.2}
+to{opacity:1}
 }
 
 /* FUEGOS */
 
 .fire{
+
 position:absolute;
 font-size:28px;
 animation:boom 1s forwards;
+
 }
 
 @keyframes boom{
-0%{transform:scale(0);}
-100%{transform:scale(2);opacity:0;}
+
+0%{transform:scale(0)}
+100%{transform:scale(2);opacity:0}
+
 }
 
 /* TEXTO FINAL */
 
 .love{
+
 position:absolute;
 bottom:20px;
-font-size:24px;
+font-size:22px;
+
 animation:pulse 2s infinite;
+
 }
 
 @keyframes pulse{
-0%{transform:scale(1);}
-50%{transform:scale(1.2);}
-100%{transform:scale(1);}
+
+0%{transform:scale(1)}
+50%{transform:scale(1.2)}
+100%{transform:scale(1)}
+
 }
 
 </style>
+
 </head>
 
 <body>
@@ -192,26 +279,30 @@ animation:pulse 2s infinite;
 <div id="typing"></div>
 
 <button onclick="showLove()">Abrir mi corazón 💌</button>
-<button onclick="loveExplosion()">Te amo Eunice 💜</button>
+<button onclick="loveExplosion()">Te amo 💜</button>
 
 <div class="secret" id="secret">
 
-Eunice, desde el 11 de febrero mi corazón cambió.
+Eunice...
+
+Desde el **11 de febrero** mi corazón cambió.
 
 Ese día comenzó algo que jamás olvidaré.
 
-Hoy el mundo celebra a las mujeres…
+Hoy el mundo celebra a las mujeres  
+pero yo celebro **a la más hermosa de todas: tú.**
 
-pero yo celebro a la más hermosa de todas: tú.
+Gracias por existir  
+y por hacer mi vida más feliz.
 
-Gracias por existir y por hacer mi vida más feliz.
-
-Te amo infinitamente. 💜
+**Te amo infinitamente. 💜**
 
 </div>
 
 <div class="photo">
-<img src="TU_FOTO_AQUI.jpg">
+
+<img src="https://cdn.jsdelivr.net/gh/dmxyt/daemonixgames.com@0447f474359f89a6d301912c4e2b6950af8c3ce7/8demarzo/file_00000000ec4c71fdac0f6ba23baac53c.png">
+
 </div>
 
 <div class="counter" id="counter"></div>
@@ -220,13 +311,9 @@ Te amo infinitamente. 💜
 
 <div class="love">✨ Mi princesa hermosa ✨</div>
 
-<audio autoplay loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6c6f03f06a.mp3">
-</audio>
-
 <script>
 
-/* MENSAJES ROTATIVOS */
+/* MENSAJES */
 
 const messages=[
 "Eunice, eres la mujer más hermosa de mi universo.",
@@ -241,91 +328,120 @@ const messages=[
 let index=0
 
 function rotate(){
+
 const t=document.getElementById("typing")
+
 t.style.opacity=0
 
 setTimeout(()=>{
+
 t.innerHTML=messages[index]
 t.style.opacity=1
+
 index++
 if(index>=messages.length) index=0
+
 },500)
+
 }
 
 setInterval(rotate,4000)
 rotate()
 
-/* MENSAJE */
+/* MOSTRAR MENSAJE */
 
 function showLove(){
+
 document.getElementById("secret").style.display="block"
 fireworks()
+
 }
 
 /* CORAZONES */
 
 function heart(){
+
 const h=document.createElement("div")
+
 h.className="heart"
 h.innerHTML="💜"
+
 h.style.left=Math.random()*100+"vw"
 h.style.animationDuration=(4+Math.random()*4)+"s"
+
 document.body.appendChild(h)
 
-setTimeout(()=>{h.remove()},8000)
+setTimeout(()=>h.remove(),8000)
+
 }
 
-setInterval(heart,500)
+setInterval(heart,800)
 
 /* ROSAS */
 
 function rose(){
+
 const r=document.createElement("div")
+
 r.className="rose"
 r.innerHTML="🌹"
+
 r.style.left=Math.random()*100+"vw"
 r.style.animationDuration=(5+Math.random()*5)+"s"
+
 document.body.appendChild(r)
 
-setTimeout(()=>{r.remove()},10000)
+setTimeout(()=>r.remove(),10000)
+
 }
 
-setInterval(rose,900)
+setInterval(rose,1200)
 
 /* ESTRELLAS */
 
-for(let i=0;i<150;i++){
+for(let i=0;i<120;i++){
+
 let s=document.createElement("div")
+
 s.className="star"
-s.style.width=Math.random()*3+"px"
-s.style.height=s.style.width
+
 s.style.left=Math.random()*100+"vw"
 s.style.top=Math.random()*100+"vh"
+
 document.body.appendChild(s)
+
 }
 
 /* FUEGOS */
 
 function fireworks(){
+
 for(let i=0;i<20;i++){
+
 let f=document.createElement("div")
+
 f.className="fire"
 f.innerHTML="✨"
+
 f.style.left=Math.random()*100+"vw"
 f.style.top=Math.random()*100+"vh"
+
 document.body.appendChild(f)
 
-setTimeout(()=>{f.remove()},1000)
-}
+setTimeout(()=>f.remove(),1000)
+
 }
 
-/* EXPLOSION DE AMOR */
+}
+
+/* EXPLOSION */
 
 function loveExplosion(){
-for(let i=0;i<50;i++){
-heart()
-}
+
+for(let i=0;i<40;i++) heart()
+
 fireworks()
+
 }
 
 /* CONTADOR */
@@ -333,6 +449,7 @@ fireworks()
 const start=new Date("2026-02-11")
 
 function counter(){
+
 const now=new Date()
 const diff=now-start
 
@@ -343,6 +460,7 @@ const minutes=Math.floor(diff/(1000*60)%60)
 document.getElementById("counter").innerHTML=
 "💜 Amándote desde el 11 de febrero hace "+
 days+" días "+hours+" horas "+minutes+" minutos"
+
 }
 
 setInterval(counter,1000)
