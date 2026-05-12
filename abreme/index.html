@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Un Universo para Eunice</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    font-family:'Poppins',sans-serif;
+    background:black;
+    color:white;
+}
+
+/* PANTALLA BLOQUEADA */
+
+.lock-screen{
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at top,#3b1368 0%,#090012 60%,black 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    z-index:100;
+    text-align:center;
+    padding:30px;
+}
+
+.lock-screen h1{
+    font-family:'Cinzel',serif;
+    font-size:3rem;
+    color:#ffdfff;
+    text-shadow:0 0 20px #ff66ff;
+    margin-bottom:20px;
+}
+
+.lock-screen p{
+    max-width:700px;
+    line-height:1.8;
+    color:#e8d9ff;
+    font-size:1.1rem;
+}
+
+.lock-icon{
+    font-size:6rem;
+    margin-bottom:25px;
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.1);}
+    100%{transform:scale(1);}
+}
+
+/* CONTENIDO */
+
+.main{
+    display:none;
+    height:100vh;
+    overflow-y:auto;
+    position:relative;
+    background:
+    radial-gradient(circle at center,#4f1d8b 0%,#170027 50%,#040008 100%);
+}
+
+/* ESTRELLAS */
+
+.stars{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:0;
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle{
+    0%,100%{
+        opacity:.2;
+        transform:scale(1);
+    }
+    50%{
+        opacity:1;
+        transform:scale(2);
+    }
+}
+
+/* PLANETAS */
+
+.planet{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(.2px);
+    opacity:.7;
+    animation:float 8s infinite ease-in-out;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-20px);
+    }
+}
+
+.container{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:1200px;
+    margin:auto;
+    padding:40px 20px 120px;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-family:'Great Vibes',cursive;
+    font-size:7rem;
+    color:#ffe6ff;
+    text-shadow:
+    0 0 10px #ff77ff,
+    0 0 25px #ff55ff,
+    0 0 50px #ff00ff;
+}
+
+.hero h2{
+    margin-top:20px;
+    font-weight:300;
+    max-width:900px;
+    line-height:1.8;
+    font-size:1.5rem;
+    color:#f7e8ff;
+}
+
+.hero .heart{
+    font-size:5rem;
+    margin-top:30px;
+    animation:pulse 2s infinite;
+}
+
+/* CARTA */
+
+.letter{
+    margin-top:50px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.12);
+    backdrop-filter:blur(12px);
+    border-radius:35px;
+    padding:60px;
+    box-shadow:0 0 50px rgba(255,255,255,0.08);
+}
+
+.letter-title{
+    text-align:center;
+    font-family:'Great Vibes',cursive;
+    font-size:4rem;
+    margin-bottom:40px;
+    color:#ffe4ff;
+}
+
+.poem{
+    line-height:2.3;
+    font-size:1.15rem;
+    color:#f9efff;
+    white-space:pre-line;
+}
+
+/* FLORES */
+
+.flower{
+    position:fixed;
+    top:-100px;
+    font-size:25px;
+    animation:fall linear infinite;
+    z-index:1;
+}
+
+@keyframes fall{
+    to{
+        transform:
+        translateY(120vh)
+        rotate(360deg);
+    }
+}
+
+.footer{
+    margin-top:70px;
+    text-align:center;
+    font-size:1.2rem;
+    color:#ffe2ff;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:4rem;
+}
+
+.hero h2{
+    font-size:1.1rem;
+}
+
+.letter{
+    padding:30px;
+}
+
+.letter-title{
+    font-size:3rem;
+}
+
+.poem{
+    font-size:1rem;
+}
+
+.lock-screen h1{
+    font-size:2rem;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- PANTALLA BLOQUEADA -->
+<div class="lock-screen" id="lockScreen">
+
+    <div class="lock-icon">🔒</div>
+
+    <h1>Universo Privado</h1>
+
+    <p id="lockMessage">
+        Este universo fue creado únicamente para Eunice.
+        <br><br>
+        Se abrirá automáticamente el 13 de mayo,
+        el día en que el cielo celebró el nacimiento
+        de la niña más bella de este universo. ✨
+    </p>
+
+</div>
+
+<!-- CONTENIDO -->
+<div class="main" id="mainContent">
+
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+
+        <section class="hero">
+
+            <h1>Feliz Cumpleaños Eunice</h1>
+
+            <h2>
+                Hoy el universo entero celebra los 17 años
+                de la niña más dulce, más hermosa y más especial
+                que mis ojos han podido contemplar.
+            </h2>
+
+            <div class="heart">🤍</div>
+
+        </section>
+
+        <section class="letter">
+
+            <div class="letter-title">
+                Carta para la niña que volvió bonito el universo
+            </div>
+
+            <div class="poem">
+
+Hoy el cielo se quedó observando la Tierra…
+
+porque hace exactamente 17 años,
+Dios permitió que naciera
+una niña tan hermosa
+que hasta las estrellas aprendieron
+a brillar distinto desde entonces.
+
+Eunice…
+
+su nombre suena como canción,
+como poema,
+como una de esas historias
+que jamás deberían terminar.
+
+Y quizá usted no lo note,
+pero cuando sonríe,
+el mundo parece más tranquilo.
+
+Las flores se miran más vivas,
+la luna más brillante,
+y el corazón…
+más enamorado de la vida.
+
+Porque usted tiene algo
+que muy pocas personas poseen:
+
+un alma bonita.
+
+De esas que no necesitan esforzarse
+para iluminar todo.
+
+De esas que llegan
+y hacen sentir paz.
+
+Y míreme aquí…
+
+tratando de escribirle una carta,
+cuando sinceramente
+ninguna palabra alcanza
+para describir lo mucho que vale.
+
+Porque no hay poeta,
+ni canción,
+ni mariachi bajo la luna,
+que pueda explicar completamente
+la belleza tan inmensa
+que existe dentro de usted.
+
+17 años…
+
+17 primaveras
+de existir en este mundo
+y volverlo más bonito.
+
+17 años
+de tener la sonrisa más dulce,
+la mirada más tierna
+y el corazón más precioso
+que este universo pudo crear.
+
+Si Joan Sebastian hubiera conocido sus ojos,
+seguramente habría escrito
+la canción más bonita de todas.
+
+Porque usted inspira ternura,
+inspira calma,
+inspira amor verdadero.
+
+Y ojalá la vida siempre la cuide,
+porque alguien como usted
+merece todas las cosas bonitas
+que existen bajo el cielo.
+
+Que nunca le falten motivos para sonreír.
+
+Que jamás se apague esa luz tan hermosa
+que lleva dentro.
+
+Y que el universo entero
+le recuerde siempre
+lo especial que es.
+
+Porque hoy no solo cumple años una niña…
+
+hoy celebra el mundo
+la existencia
+de un pedacito de cielo hecho persona.
+
+Feliz cumpleaños, Eunice.
+
+Felices 17 años
+a la niña más bella
+que ha visto este universo. 🤍
+
+            </div>
+
+        </section>
+
+        <div class="footer">
+            Hecho con muchísimo amor para Eunice ✨
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* FECHA */
+
+const today = new Date();
+
+const day = today.getDate();
+const month = today.getMonth() + 1;
+
+/*
+SE ABRE SOLO EL 13 DE MAYO
+*/
+
+if(day === 13 && month === 5){
+
+    document.getElementById("lockScreen").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
+
+}else{
+
+    const faltan = `
+    Aún no es 13 de mayo...
+    <br><br>
+    Este pequeño universo se abrirá únicamente
+    el día especial de Eunice 🤍
+    `;
+
+    document.getElementById("lockMessage").innerHTML = faltan;
+}
+
+/* ESTRELLAS */
+
+const stars = document.getElementById("stars");
+
+for(let i=0;i<250;i++){
+
+    let star = document.createElement("div");
+
+    star.classList.add("star");
+
+    star.style.left = Math.random()*100 + "%";
+    star.style.top = Math.random()*100 + "%";
+
+    star.style.animationDuration =
+    (Math.random()*4 + 2) + "s";
+
+    stars.appendChild(star);
+}
+
+/* PLANETAS */
+
+for(let i=0;i<7;i++){
+
+    let planet = document.createElement("div");
+
+    planet.classList.add("planet");
+
+    let size = Math.random()*120 + 40;
+
+    planet.style.width = size + "px";
+    planet.style.height = size + "px";
+
+    planet.style.left = Math.random()*100 + "%";
+    planet.style.top = Math.random()*100 + "%";
+
+    planet.style.background =
+    `radial-gradient(circle at top,
+    rgba(255,255,255,.8),
+    hsl(${Math.random()*360},70%,50%),
+    rgba(0,0,0,.8))`;
+
+    planet.style.animationDuration =
+    (Math.random()*8 + 6) + "s";
+
+    document.body.appendChild(planet);
+}
+
+/* FLORES */
+
+const flowers = ["🌸","🌹","💮","🌷","✨"];
+
+for(let i=0;i<35;i++){
+
+    let flower = document.createElement("div");
+
+    flower.classList.add("flower");
+
+    flower.innerHTML =
+    flowers[Math.floor(Math.random()*flowers.length)];
+
+    flower.style.left =
+    Math.random()*100 + "vw";
+
+    flower.style.animationDuration =
+    (Math.random()*12 + 8) + "s";
+
+    flower.style.fontSize =
+    (Math.random()*30 + 15) + "px";
+
+    flower.style.opacity =
+    Math.random();
+
+    document.body.appendChild(flower);
+}
+
+</script>
+
+</body>
+</html>
